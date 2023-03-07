@@ -35,16 +35,25 @@ function reset() {
 }
 
 function operate() {
-  if (!firstNumber && !operator && !userInput) return;
+  if (!firstNumber || !operator || !userInput) return;
 
-  if (secondNumber) {
-    firstNumber = userInput;
-  } else {
-    secondNumber = userInput;
-  }
-  userInput = operators[operator]
-    .operation(parseFloat(firstNumber), parseFloat(secondNumber))
-    .toString();
+  inputField.classList.add("moveUp");
+  inputField.addEventListener(
+    "animationend",
+    (e) => {
+      inputField.classList.remove("moveUp");
+      if (secondNumber) {
+        firstNumber = userInput;
+      } else {
+        secondNumber = userInput;
+      }
+      userInput = operators[operator]
+        .operation(parseFloat(firstNumber), parseFloat(secondNumber))
+        .toString();
+      display();
+    },
+    { once: true }
+  );
 }
 
 function removeLastSymbol() {
@@ -83,40 +92,45 @@ const functions = {
 };
 
 function display() {
+  operationField.textContent = "";
+  inputField.textContent = "";
+
   const operatorText = operator ? operators[operator].text : "";
-  operationField.textContent = `${firstNumber ?? ""}`;
-  operationField.textContent += ` ${operatorText} `;
-  operationField.textContent += `${secondNumber ?? ""}`;
-  operationField.textContent += `${secondNumber ? "=" : ""}`;
-  inputField.textContent = userInput;
+  if (!secondNumber) {
+    inputField.textContent =
+      `${firstNumber ?? ""}` + ` ${operatorText} ` + userInput;
+  } else {
+    operationField.textContent += `${firstNumber} ${operatorText} ${secondNumber} =`;
+    inputField.textContent = userInput;
+  }
 }
 
 function addDigit(digit) {
-      if (secondNumber) reset();
+  if (secondNumber) reset();
   userInput += digit;
-      deleteBtn.disabled = false;
+  deleteBtn.disabled = false;
 }
 
 function addOperator(op) {
   if (userInput === errorString) return;
-      if (!firstNumber) {
-        if (!userInput) {
+  if (!firstNumber) {
+    if (!userInput) {
       return;
-        } else {
-          firstNumber = userInput;
-        }
-      } else if (userInput) {
-        if (secondNumber) {
-          firstNumber = userInput;
-          secondNumber = "";
-        } else {
-          operate();
-          firstNumber = userInput;
-          secondNumber = "";
-        }
-      }
+    } else {
+      firstNumber = userInput;
+    }
+  } else if (userInput) {
+    if (secondNumber) {
+      firstNumber = userInput;
+      secondNumber = "";
+    } else {
+      operate();
+      firstNumber = userInput;
+      secondNumber = "";
+    }
+  }
   operator = op;
-      userInput = "";
+  userInput = "";
 }
 
 function buttonClick(type, value, text) {

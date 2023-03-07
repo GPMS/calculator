@@ -77,11 +77,23 @@ h1 {
   flex-direction: column;
   justify-items: center;
   text-align: right;
-  padding: 1rem;
+  margin: 1rem;
 }
 
 #user-input {
   font-size: 2rem;
+}
+
+@keyframes moveUp {
+  100% {
+    transform: translateY(-300%);
+    font-size: 1rem;
+  }
+}
+
+.moveUp {
+  animation-name: moveUp;
+  animation-duration: 0.5s;
 }
 
 @keyframes cursor-blink {
