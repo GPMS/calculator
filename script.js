@@ -38,7 +38,7 @@ function operate() {
     secondNumber = userInput;
   }
   userInput = operators[operator]
-    .operation(Number(firstNumber), Number(secondNumber))
+    .operation(parseFloat(firstNumber), parseFloat(secondNumber))
     .toString();
 }
 
@@ -61,6 +61,19 @@ const functions = {
   "=": operate,
   clear: reset,
   delete: removeLastSymbol,
+  ".": () => {
+    if (!userInput) {
+      userInput += "0.";
+    } else if (userInput.search(/\./) != -1) {
+      return;
+    } else {
+      if (secondNumber) {
+        reset();
+        userInput += 0;
+      }
+      userInput += ".";
+    }
+  },
 };
 
 function display() {
