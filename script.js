@@ -32,14 +32,14 @@ function reset() {
 function operate() {
   if (!firstNumber && !operator && !userInput) return;
 
-    if (secondNumber) {
-      firstNumber = userInput;
-    } else {
-      secondNumber = userInput;
-    }
+  if (secondNumber) {
+    firstNumber = userInput;
+  } else {
+    secondNumber = userInput;
+  }
   userInput = operators[operator]
-      .operation(Number(firstNumber), Number(secondNumber))
-      .toString();
+    .operation(Number(firstNumber), Number(secondNumber))
+    .toString();
 }
 
 function removeLastSymbol() {
@@ -83,7 +83,7 @@ function buttonClick(type, value, text) {
         if (!userInput) {
           break;
         } else {
-        firstNumber = userInput;
+          firstNumber = userInput;
         }
       } else if (userInput) {
         if (secondNumber) {
