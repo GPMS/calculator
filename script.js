@@ -42,9 +42,25 @@ function operate() {
       .toString();
 }
 
+function removeLastSymbol() {
+  if (userInput) {
+    if (secondNumber) {
+      firstNumber = null;
+      secondNumber = null;
+      operator = null;
+    }
+    userInput = userInput.substring(0, userInput.length - 1);
+  } else if (operator) {
+    operator = null;
+    userInput = firstNumber;
+    firstNumber = "";
+  }
+}
+
 const functions = {
   "=": operate,
   clear: reset,
+  delete: removeLastSymbol,
 };
 
 function display() {
