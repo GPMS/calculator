@@ -4,19 +4,47 @@ const buttons = document.querySelectorAll("button");
 
 let operator = "";
 let firstNumber = "";
+let secondNumber = "";
 let userInput = "";
 
 const operators = {
-  "/": {},
-  x: {},
-  "-": {},
-  "+": {},
+  "/": {
+    operation: (a, b) => a / b,
+  },
+  x: {
+    operation: (a, b) => a * b,
+  },
+  "-": {
+    operation: (a, b) => a - b,
+  },
+  "+": {
+    operation: (a, b) => a + b,
+  },
+};
+
+const functions = {
+  "=": () => {
+    if (!firstNumber) return;
+    if (!operator) return;
+    if (!userInput) return;
+
+    if (secondNumber) {
+      firstNumber = userInput;
+    } else {
+      secondNumber = userInput;
+    }
+    userInput = operators[operator]
+      .operation(Number(firstNumber), Number(secondNumber))
+      .toString();
+  },
 };
 
 function display() {
   const operatorText = operator ? operators[operator].text : "";
   operationField.textContent = `${firstNumber ?? ""}`;
   operationField.textContent += ` ${operatorText} `;
+  operationField.textContent += `${secondNumber ?? ""}`;
+  operationField.textContent += `${secondNumber ? "=" : ""}`;
   inputField.textContent = userInput;
 }
 
@@ -34,6 +62,7 @@ function buttonClick(type, value, text) {
       userInput = "";
       break;
     case "function":
+      functions[value]();
       break;
   }
   display();
