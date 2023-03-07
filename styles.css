@@ -1,0 +1,4 @@
+/* Use the button's onClick event */
+button span {
+  pointer-events: none;
+}
