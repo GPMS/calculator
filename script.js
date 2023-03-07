@@ -27,9 +27,9 @@ const operators = {
 };
 
 function reset() {
-  firstNumber = null;
-  secondNumber = null;
-  operator = null;
+  firstNumber = "";
+  secondNumber = "";
+  operator = "";
   userInput = "";
   deleteBtn.disabled = true;
 }
@@ -95,7 +95,7 @@ function buttonClick(type, value, text) {
   switch (type) {
     case "digit":
       if (secondNumber) reset();
-      userInput += text;
+      userInput += value;
       deleteBtn.disabled = false;
       break;
     case "operator":
