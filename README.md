@@ -1,5 +1,9 @@
 # Calculator
 
+<div align="center">
+  <img styles="margin: 0 auto;" src="img/2023-03-07-204938_367x618_scrot.png" width=30%></img>
+</div>
+
 This is my implementation of the [Calculator Project](https://www.theodinproject.com/lessons/foundations-calculator)
 from the Java Script section of the Foundations course of [The Odin Project](https://www.theodinproject.com).
 
