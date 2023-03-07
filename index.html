@@ -14,37 +14,106 @@
   </head>
   <body>
     <main>
-      <div>
-        <output id="operation"></output>
-        <output id="user-input"></output>
-      </div>
-      <div>
-        <div>
-          <button type="button" data-type="function" value="delete" disabled>
-            <span class="material-icons-outlined"> backspace </span>
-          </button>
+      <h1>Calculator</h1>
+      <div class="calculator">
+        <div class="display">
+          <output id="operation"></output>
+          <output id="user-input"></output>
         </div>
-        <div>
-          <button type="button" data-type="function" value="clear">C</button>
-          <div></div>
-          <div></div>
-          <button type="button" data-type="operator" value="/">&divide;</button>
-          <button type="button" data-type="digit" value="7">7</button>
-          <button type="button" data-type="digit" value="8">8</button>
-          <button type="button" data-type="digit" value="9">9</button>
-          <button type="button" data-type="operator" value="x">&times;</button>
-          <button type="button" data-type="digit" value="4">4</button>
-          <button type="button" data-type="digit" value="5">5</button>
-          <button type="button" data-type="digit" value="6">6</button>
-          <button type="button" data-type="operator" value="-">&minus;</button>
-          <button type="button" data-type="digit" value="1">1</button>
-          <button type="button" data-type="digit" value="2">2</button>
-          <button type="button" data-type="digit" value="3">3</button>
-          <button type="button" data-type="operator" value="+">&plus;</button>
-          <div></div>
-          <button type="button" data-type="digit" value="0">0</button>
-          <button type="button" data-type="function" value=".">&period;</button>
-          <button type="button" data-type="function" value="=">&equals;</button>
+        <div class="btn-container">
+          <div class="btn-special">
+            <div class="button"></div>
+            <button
+              class="button button-accent"
+              type="button"
+              data-type="function"
+              value="delete"
+              disabled
+            >
+              <span class="material-icons-outlined"> backspace </span>
+            </button>
+          </div>
+          <div class="btn-grid">
+            <button
+              class="button"
+              type="button"
+              data-type="function"
+              value="clear"
+            >
+              C
+            </button>
+            <div class="button button-accent"></div>
+            <div class="button button-accent"></div>
+            <button
+              class="button button-accent"
+              type="button"
+              data-type="operator"
+              value="/"
+            >
+              &divide;
+            </button>
+            <button class="button" type="button" data-type="digit" value="7">
+              7
+            </button>
+            <button class="button" type="button" data-type="digit" value="8">
+              8
+            </button>
+            <button class="button" type="button" data-type="digit" value="9">
+              9
+            </button>
+            <button
+              class="button button-accent"
+              type="button"
+              data-type="operator"
+              value="x"
+            >
+              &times;
+            </button>
+            <button class="button" type="button" data-type="digit" value="4">
+              4
+            </button>
+            <button class="button" type="button" data-type="digit" value="5">
+              5
+            </button>
+            <button class="button" type="button" data-type="digit" value="6">
+              6
+            </button>
+            <button
+              class="button button-accent"
+              type="button"
+              data-type="operator"
+              value="-"
+            >
+              &minus;
+            </button>
+            <button class="button" type="button" data-type="digit" value="1">
+              1
+            </button>
+            <button class="button" type="button" data-type="digit" value="2">
+              2
+            </button>
+            <button class="button" type="button" data-type="digit" value="3">
+              3
+            </button>
+            <button
+              class="button button-accent"
+              type="button"
+              data-type="operator"
+              value="+"
+            >
+              &plus;
+            </button>
+            <div class="button"></div>
+            <button class="button" type="button" data-type="digit" value="0">
+              0
+            </button>
+            <button class="button" type="button" data-type="function" value=".">
+              &period;
+            </button>
+            <button class="button" type="button" data-type="function" value="=">
+              &equals;
+            </button>
+          </div>
         </div>
       </div>
     </main>
