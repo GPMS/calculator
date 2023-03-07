@@ -132,6 +132,16 @@ buttons.forEach((button) => {
   }
   button.addEventListener("click", (e) => {
     const thisButton = e.target;
+    if (thisButton.parentNode.classList.contains("btn-grid")) {
+      thisButton.classList.add("changeSize");
+      thisButton.addEventListener(
+        "animationend",
+        (e) => {
+          e.target.classList.remove("changeSize");
+        },
+        { once: true }
+      );
+    }
     buttonClick(
       thisButton.dataset.type,
       thisButton.value,
