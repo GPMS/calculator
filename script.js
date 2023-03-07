@@ -1,6 +1,7 @@
 const operationField = document.querySelector("#operation");
 const inputField = document.querySelector("#user-input");
 const buttons = document.querySelectorAll("button");
+const deleteBtn = document.querySelector('button[value="delete"]');
 
 let operator = "";
 let firstNumber = "";
@@ -27,6 +28,7 @@ function reset() {
   secondNumber = null;
   operator = null;
   userInput = "";
+  deleteBtn.disabled = true;
 }
 
 function operate() {
@@ -55,6 +57,7 @@ function removeLastSymbol() {
     userInput = firstNumber;
     firstNumber = "";
   }
+  if (!firstNumber && !userInput) deleteBtn.disabled = true;
 }
 
 const functions = {
@@ -90,6 +93,7 @@ function buttonClick(type, value, text) {
     case "digit":
       if (secondNumber) reset();
       userInput += text;
+      deleteBtn.disabled = false;
       break;
     case "operator":
       if (!firstNumber) {
