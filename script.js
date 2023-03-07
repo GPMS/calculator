@@ -30,24 +30,20 @@ function reset() {
 }
 
 function operate() {
-    if (!firstNumber) return;
-    if (!operator) return;
-    if (!userInput) return;
+  if (!firstNumber && !operator && !userInput) return;
 
     if (secondNumber) {
       firstNumber = userInput;
     } else {
       secondNumber = userInput;
     }
-  return operators[operator]
+  userInput = operators[operator]
       .operation(Number(firstNumber), Number(secondNumber))
       .toString();
 }
 
 const functions = {
-  "=": () => {
-    userInput = operate();
-  },
+  "=": operate,
   clear: reset,
 };
 
@@ -78,7 +74,8 @@ function buttonClick(type, value, text) {
           firstNumber = userInput;
           secondNumber = "";
         } else {
-          firstNumber = operate();
+          operate();
+          firstNumber = userInput;
           secondNumber = "";
         }
       }
