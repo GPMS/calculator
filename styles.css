@@ -61,11 +61,11 @@ h1 {
 
 .calculator {
   grid-template-rows: 1fr 4fr;
-  border: 1px solid black;
+  border: 1px solid var(--btn-bg-color-light);
   background-color: var(--calc-bg-color);
   border-radius: 5%;
   max-width: 300px;
-  height: max(500px, 50vh);
+  height: max(530px, 50vh);
   margin: 0 auto;
   padding: 1rem;
 }
