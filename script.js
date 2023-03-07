@@ -29,8 +29,7 @@ function reset() {
   userInput = "";
 }
 
-const functions = {
-  "=": () => {
+function operate() {
     if (!firstNumber) return;
     if (!operator) return;
     if (!userInput) return;
@@ -40,9 +39,14 @@ const functions = {
     } else {
       secondNumber = userInput;
     }
-    userInput = operators[operator]
+  return operators[operator]
       .operation(Number(firstNumber), Number(secondNumber))
       .toString();
+}
+
+const functions = {
+  "=": () => {
+    userInput = operate();
   },
   clear: reset,
 };
@@ -64,8 +68,19 @@ function buttonClick(type, value, text) {
       break;
     case "operator":
       if (!firstNumber) {
-        if (!userInput) break;
+        if (!userInput) {
+          break;
+        } else {
         firstNumber = userInput;
+        }
+      } else if (userInput) {
+        if (secondNumber) {
+          firstNumber = userInput;
+          secondNumber = "";
+        } else {
+          firstNumber = operate();
+          secondNumber = "";
+        }
       }
       operator = value;
       userInput = "";
