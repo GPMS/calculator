@@ -73,12 +73,35 @@ h1 {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  justify-items: center;
   text-align: right;
   padding: 1rem;
 }
 
 #user-input {
   font-size: 2rem;
+}
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 100;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#user-input::after {
+  content: "";
+  background-color: rgb(109, 226, 226);
+  display: inline-block;
+  width: 2px;
+  height: 2.1rem;
+  margin-bottom: -8px;
+  animation: cursor-blink steps(1) 1.2s infinite;
 }
 
 button {
