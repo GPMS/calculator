@@ -22,6 +22,13 @@ const operators = {
   },
 };
 
+function reset() {
+  firstNumber = null;
+  secondNumber = null;
+  operator = null;
+  userInput = "";
+}
+
 const functions = {
   "=": () => {
     if (!firstNumber) return;
@@ -37,6 +44,7 @@ const functions = {
       .operation(Number(firstNumber), Number(secondNumber))
       .toString();
   },
+  clear: reset,
 };
 
 function display() {
@@ -51,6 +59,7 @@ function display() {
 function buttonClick(type, value, text) {
   switch (type) {
     case "digit":
+      if (secondNumber) reset();
       userInput += text;
       break;
     case "operator":
