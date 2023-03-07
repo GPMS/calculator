@@ -7,10 +7,13 @@ let operator = "";
 let firstNumber = "";
 let secondNumber = "";
 let userInput = "";
+const errorString = "try again";
 
 const operators = {
   "/": {
-    operation: (a, b) => a / b,
+    operation: (a, b) => {
+      return b === 0 ? errorString : a / b;
+    },
   },
   x: {
     operation: (a, b) => a * b,
@@ -96,6 +99,7 @@ function buttonClick(type, value, text) {
       deleteBtn.disabled = false;
       break;
     case "operator":
+      if (userInput === errorString) break;
       if (!firstNumber) {
         if (!userInput) {
           break;
