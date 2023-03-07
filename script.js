@@ -91,18 +91,17 @@ function display() {
   inputField.textContent = userInput;
 }
 
-function buttonClick(type, value, text) {
-  switch (type) {
-    case "digit":
+function addDigit(digit) {
       if (secondNumber) reset();
-      userInput += value;
+  userInput += digit;
       deleteBtn.disabled = false;
-      break;
-    case "operator":
-      if (userInput === errorString) break;
+}
+
+function addOperator(op) {
+  if (userInput === errorString) return;
       if (!firstNumber) {
         if (!userInput) {
-          break;
+      return;
         } else {
           firstNumber = userInput;
         }
@@ -116,8 +115,17 @@ function buttonClick(type, value, text) {
           secondNumber = "";
         }
       }
-      operator = value;
+  operator = op;
       userInput = "";
+}
+
+function buttonClick(type, value, text) {
+  switch (type) {
+    case "digit":
+      addDigit(value);
+      break;
+    case "operator":
+      addOperator(value);
       break;
     case "function":
       functions[value]();
