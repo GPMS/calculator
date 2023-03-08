@@ -49,6 +49,7 @@ function operate() {
       }
       userInput = operators[operator]
         .operation(parseFloat(firstNumber), parseFloat(secondNumber))
+        .toFixed(5)
         .toString();
       display();
     },
@@ -107,7 +108,11 @@ function display() {
 
 function addDigit(digit) {
   if (secondNumber) reset();
-  userInput += digit;
+  if (userInput.replace(".", "").length < 5) {
+    userInput += digit;
+  } else {
+    console.log("Numbers with more than 10 digits aren't allowed!");
+  }
   deleteBtn.disabled = false;
 }
 
