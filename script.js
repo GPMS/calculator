@@ -34,6 +34,21 @@ function reset() {
   deleteBtn.disabled = true;
 }
 
+function stripExcessZeroes(number) {
+  let i = number.length;
+  console.log(`${number}`);
+  while (i > 0) {
+    if (number[i - 1] === ".") {
+      i--;
+      break;
+    } else if (number[i - 1] !== "0") {
+      break;
+    }
+    i--;
+  }
+  return number.slice(0, i);
+}
+
 function operate() {
   if (!firstNumber || !operator || !userInput) return;
 
@@ -47,10 +62,10 @@ function operate() {
       } else {
         secondNumber = userInput;
       }
-      userInput = operators[operator]
+      const result = operators[operator]
         .operation(parseFloat(firstNumber), parseFloat(secondNumber))
-        .toFixed(5)
-        .toString();
+        .toFixed(5);
+      userInput = stripExcessZeroes(result.toString());
       display();
     },
     { once: true }
