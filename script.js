@@ -5,7 +5,9 @@ const deleteBtn = document.querySelector('button[value="delete"]');
 const historyDisplay = document.querySelector(".history");
 const entryTemplate = document.querySelector("#entry-template");
 const entries = document.querySelector(".entries");
-const toggleHistoryBtn = document.querySelector('button[value="history"]');
+const toggleHistoryBtn = document.querySelector(
+  'button[value="toggle-history"]'
+);
 
 let operator = "";
 let firstNumber = "";
