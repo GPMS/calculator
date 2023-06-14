@@ -2,6 +2,10 @@ const operationField = document.querySelector("#operation");
 const inputField = document.querySelector("#user-input");
 const buttons = document.querySelectorAll("button");
 const deleteBtn = document.querySelector('button[value="delete"]');
+const historyDisplay = document.querySelector(".history");
+const entryTemplate = document.querySelector("#entry-template");
+const entries = document.querySelector(".entries");
+const toggleHistoryBtn = document.querySelector('button[value="history"]');
 
 let operator = "";
 let firstNumber = "";
@@ -36,7 +40,6 @@ function reset() {
 
 function stripExcessZeroes(number) {
   let i = number.length;
-  console.log(`${number}`);
   while (i > 0) {
     if (number[i - 1] === ".") {
       i--;
@@ -47,6 +50,25 @@ function stripExcessZeroes(number) {
     i--;
   }
   return number.slice(0, i);
+}
+
+function addHistoryEntry(operation, result) {
+  const entry = entryTemplate.content.cloneNode(true);
+
+  const operationField = entry.querySelector(".entry-operation");
+  const resultField = entry.querySelector(".entry-result");
+  operationField.textContent = operation;
+  resultField.textContent = result;
+
+  resultField.addEventListener("click", (e) => {
+    reset();
+    userInput = e.target.textContent;
+    display();
+  });
+
+  entries.appendChild(entry);
+
+  toggleHistoryBtn.disabled = false;
 }
 
 function operate() {
@@ -62,10 +84,12 @@ function operate() {
       } else {
         secondNumber = userInput;
       }
-      const result = operators[operator]
+      let result = operators[operator]
         .operation(parseFloat(firstNumber), parseFloat(secondNumber))
         .toFixed(5);
-      userInput = stripExcessZeroes(result.toString());
+      result = stripExcessZeroes(result.toString());
+      userInput = result;
+      addHistoryEntry(`${firstNumber}${operator}${secondNumber}`, result);
       display();
     },
     { once: true }
@@ -104,6 +128,14 @@ const functions = {
       }
       userInput += ".";
     }
+  },
+  "toggle-history": () => {
+    historyDisplay.classList.toggle("open");
+  },
+  "clear-history": () => {
+    entries.innerHTML = "";
+    historyDisplay.classList.toggle("open");
+    toggleHistoryBtn.disabled = true;
   },
 };
 

@@ -9,6 +9,16 @@ from the Java Script section of the Foundations course of [The Odin Project](htt
 
 This project is made with HTML5, CSS3, and JS ES6 features.
 
+The design was based on the calculator present in Samsung's smartphone.
+
+## Functionality:
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- Floating point numbers
+- History
+
 ## Skills Learned
 
 - output HTML tag;

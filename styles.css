@@ -118,22 +118,14 @@ h1 {
   animation: cursor-blink steps(1) 1.2s infinite;
 }
 
-button {
+.button {
+  --size: 25px;
+  --animation-duration: 0.5s;
   border: none;
   cursor: pointer;
   font-family: inherit;
   color: inherit;
   padding: 0;
-}
-
-button:disabled {
-  cursor: auto;
-  filter: brightness(0.5);
-}
-
-.button {
-  --size: 25px;
-  --animation-duration: 0.5s;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,6 +135,11 @@ button:disabled {
   transition: background-color var(--animation-duration);
 }
 
+.button:disabled {
+  cursor: auto;
+  filter: brightness(0.5) !important;
+}
+
 .btn-grid {
   margin-top: 1rem;
   display: grid;
@@ -150,6 +147,63 @@ button:disabled {
   justify-items: center;
   align-items: center;
   gap: 3px;
+  position: relative;
+}
+
+.history {
+  display: none;
+  position: absolute;
+  background-color: var(--calc-bg-color);
+  border-right: 2px solid var(--btn-bg-color);
+  padding-inline: 1.5rem;
+  top: 0;
+  left: 0;
+  width: 75%;
+  height: 100%;
+}
+
+.history.open {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1rem;
+}
+
+.history > button {
+  background-color: #383838;
+  border: none;
+  border-radius: 100vh;
+  color: white;
+  font-weight: 700;
+  padding-block: 0.5em;
+  cursor: pointer;
+}
+
+.entries {
+  overflow: auto;
+  padding: 0.5rem;
+}
+
+.entry {
+  margin-top: 1em;
+  text-align: right;
+}
+
+.entry > *:hover {
+  background-position: right;
+}
+
+.entry-result {
+  color: var(--color-accent-light);
+  cursor: pointer;
+  background: linear-gradient(to left, #383838 50%, var(--calc-bg-color) 50%)
+    left;
+  background-size: 210%;
+  transition: 0.3s ease-out;
+}
+
+.btn-func > .button {
+  filter: brightness(0.8);
+  background-color: var(--calc-bg-color);
 }
 
 .btn-special {
